@@ -222,6 +222,9 @@ class EDAMUserException(TException):
   def __eq__(self, other):
     return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
 
+  def __hash__(self):
+      return hash(self.errorCode) + hash(self.parameter)
+
   def __ne__(self, other):
     return not (self == other)
 
@@ -324,6 +327,9 @@ class EDAMSystemException(TException):
   def __eq__(self, other):
     return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
 
+  def __hash__(self):
+      return hash(self.errorCode) + hash(self.message)
+
   def __ne__(self, other):
     return not (self == other)
 
@@ -410,6 +416,9 @@ class EDAMNotFoundException(TException):
 
   def __eq__(self, other):
     return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __hash__(self):
+      return hash(self.errorCode) + hash(self.message)
 
   def __ne__(self, other):
     return not (self == other)
